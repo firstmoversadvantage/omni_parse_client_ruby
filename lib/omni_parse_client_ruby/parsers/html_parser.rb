@@ -17,6 +17,15 @@ module OmniparseClient
         setup_connection(p)
       end
 
+      # fetching all parsers
+      # @omni_html.all(parser_id)
+      def all
+        self.last_request = base_url + index_path
+        response = RestClient.get(last_request, headers)
+        self.last_response = Response.new(response)
+        last_response
+      end
+
       # preparing / building html params
       # @omni_html.prepare(parser_id, html)
       def prepare(p = {})
@@ -69,6 +78,10 @@ module OmniparseClient
 
       def trial_run_path
         "/#{version}/html_parser/trial_run"
+      end
+
+      def index_path
+        "/#{version}/html_parsers"
       end
       #
     end
