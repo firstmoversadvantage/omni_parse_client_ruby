@@ -15,5 +15,6 @@ class OmniClientTest < Minitest::Test
                               api_key: '123')
 
     assert client.html.is_a?(OmniparseClient::Parsers::HtmlParser)
+    assert client.fixture.is_a?(OmniparseClient::Parsers::OmniFixture)
   end
 end

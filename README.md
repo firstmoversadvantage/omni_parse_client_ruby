@@ -35,6 +35,17 @@ Set up HTML client
 @omni_client.parse(html: html, omni_parser_id: omni_parser_id)
 ```
 
+## Fixture
+
+Set up OmniFixture client
+
+**omni_parser_id** - id of OmniParser 
+
+#all - Get all parser fixtures
+```ruby
+@omni_fixture = @omni.fixture
+@omni_fixture.all(omni_parser_id)
+```
 
 ## Contributing
 Contact: http://www.firstmoversadvantage.com
