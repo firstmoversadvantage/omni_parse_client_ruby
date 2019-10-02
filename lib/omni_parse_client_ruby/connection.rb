@@ -22,7 +22,9 @@ module OmniparseClient
       RestClient::ServiceUnavailable,
       RestClient::GatewayTimeout,
       RestClient::InsufficientStorage,
-      RestClient::LoopDetected
+      RestClient::LoopDetected,
+      SocketError,
+      RestClient::Exceptions::OpenTimeout
     ].freeze
 
     # constructor
