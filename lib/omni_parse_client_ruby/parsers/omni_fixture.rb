@@ -23,7 +23,7 @@ module OmniparseClient
         self.last_request = base_url + index_path
         # https://github.com/rest-client/rest-client#passing-advanced-options
         headers_and_params = self.headers.merge(params: params(parser_id))
-        response = RestClient.get(last_request, headers_and_params)
+        response = omni_get(last_request, headers_and_params)
         self.last_response = Response.new(response)
         last_response
       end
