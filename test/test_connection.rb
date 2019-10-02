@@ -20,27 +20,40 @@ class TestConnection < MiniTest::Test
     }
 
   ERROR_CODES_MESSAGES.each do |error_code, error_message|
-    define_method 'test_omni_get_server_error_' + error_code.to_s do
-      stub_request(:get, @request_url).to_return(body: "abc", status: error_code.to_s.to_i)
-      stub_rest_client do
-        err = assert_raises OmniparseClient::Connection::RetriesLimitReached do
-          @omni_client.omni_get(@request_url)
-        end
+    [:get, :post].each do |method|
+      define_method "test_omni_#{method}_server_error_#{error_code}" do
+        stub_request(method, @request_url).to_return(body: "abc", status: error_code.to_s.to_i)
+        stub_rest_client do
+          err = assert_raises OmniparseClient::Connection::RetriesLimitReached do
+            @omni_client.send("omni_#{method}", @request_url)
+          end
 
-        assert_equal error_message, err.message
+          assert_equal error_message, err.message
+        end
       end
     end
   end
 
-  ERROR_CODES_MESSAGES.each do |error_code, error_message|
-    define_method 'test_omni_post_server_error_' + error_code.to_s do
-      stub_request(:post, @request_url).to_return(body: "abc", status: error_code.to_s.to_i)
+  [:get, :post].each do |method|
+    define_method "test_omni_#{method}_socketerror" do
+      stub_request(method, @request_url).to_raise(SocketError)
       stub_rest_client do
         err = assert_raises OmniparseClient::Connection::RetriesLimitReached do
-          @omni_client.omni_post(@request_url)
+          @omni_client.send("omni_#{method}",@request_url)
         end
+        assert_equal "Exception from WebMock", err.message
+      end
+    end
+  end
 
-        assert_equal error_message, err.message
+  [:get, :post].each do |method|
+    define_method "test_omni_#{method}_timeout" do
+      stub_request(method, @request_url).to_timeout
+      stub_rest_client do
+        err = assert_raises OmniparseClient::Connection::RetriesLimitReached do
+          @omni_client.send("omni_#{method}",@request_url)
+        end
+        assert_equal "Timed out connecting to server", err.message
       end
     end
   end
