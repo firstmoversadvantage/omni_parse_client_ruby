@@ -58,6 +58,18 @@ class TestConnection < MiniTest::Test
     end
   end
 
+  [:get, :post].each do |method|
+    define_method "test_omni_#{method}_standarderror" do
+      stub_request(method, @request_url).to_raise(StandardError)
+      stub_rest_client do
+        err = assert_raises StandardError do
+          @omni_client.send("omni_#{method}",@request_url)
+        end
+        assert_equal "Exception from WebMock", err.message
+      end
+    end
+  end
+
   private
 
   def stub_rest_client(&block)
