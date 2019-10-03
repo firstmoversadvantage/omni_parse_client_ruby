@@ -12,9 +12,11 @@ module OmniparseClient
     DEFAULT_PORT          = 80
     DEFAULT_VERSION       = '/api/v1'.freeze
     # Retries count if network error occurs
-    MAX_RETRIES_COUNT     = 5
+    MAX_RETRIES_COUNT     = ENV['OMNI_MAX_RETRIES_COUNT']&.to_i || 5
     # Time in seconds for consequent delays for reconnection
-    RETRIES_DELAYS_ARRAY  = [5, 30, 2*60, 10*60, 30*60].freeze
+    RETRIES_DELAYS_ARRAY  =
+        ENV['OMNI_RETRIES_DELAYS_ARRAY']&.split(',')&.map(&:to_i) ||
+        [5, 30, 2*60, 10*60, 30*60].freeze
     RETRY_ON_ERRORS = [
       RestClient::InternalServerError,
       RestClient::NotImplemented,
