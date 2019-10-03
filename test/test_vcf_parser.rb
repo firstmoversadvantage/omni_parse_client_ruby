@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'omni_parse_client_ruby'
-
+require 'test_helper.rb'
 # :nodoc:
 class VcfParserTest < Minitest::Test
   def setup

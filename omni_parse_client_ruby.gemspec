@@ -14,5 +14,7 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://www.firstmoversadvantage.com/'
   s.license     = 'MIT'
-  s.add_runtime_dependency 'rest-client', '~> 2.0.2', '>= 2.0.2'
+  s.add_dependency 'rest-client', '~> 2.0.2', '>= 2.0.2'
+  s.add_development_dependency 'minitest-stub-const'
+  s.add_development_dependency 'webmock'
 end
