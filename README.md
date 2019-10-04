@@ -22,6 +22,30 @@ From your application set up connection:
  @omni = Omni::Client.new(host: 'localhost', version: '/api/v1', api_key: 'key', port: 3000)
 ```
 
+## Configuration of requests' retries
+
+Gem retries connection on ServerErrors, SocketError and Timeouts. Default configuration is hardcoded in the module Connection.
+It goes as follows: 
+```ruby
+MAX_RETRIES_COUNT=5
+RETRIES_DELAYS_ARRAY=[5, 30, 2*60, 10*60, 30*60]
+```
+- **MAX_RETRIES_COUNT** describes retry attempts count.
+- **RETRIES_DELAYS_ARRAY** describes consequent deplay times of each retry in seconds.
+
+**To override these settings use environment variables:**
+
+`OMNI_MAX_RETRIES_COUNT` and `OMNI_RETRIES_DELAYS_ARRAY`
+
+- **OMNI_MAX_RETRIES_COUNT** should be an integer.
+- **OMNI_RETRIES_DELAYS_ARRAY** should be a string of integers, separeted by `,`. Each integer relates to consequent delay time in seconds. Array length should not be lower than `MAX_RETRIES_COUNT`.
+
+Example for .env file:
+```ruby
+OMNI_MAX_RETRIES_COUNT=5
+OMNI_RETRIES_DELAYS_ARRAY=1,5,10,15,25
+```
+
 ## HTML parsing
 
 Set up HTML client
