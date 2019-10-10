@@ -8,8 +8,8 @@ module OmniparseClient
 
     attr_reader :api_key, :port, :version, :host
 
-    DEFAULT_URL           = 'www.example.com'.freeze
-    DEFAULT_PORT          = 80
+    DEFAULT_URL           = 'www.omniparse.com'.freeze
+    DEFAULT_PORT          = 443
     DEFAULT_VERSION       = '/api/v1'.freeze
     # Retries count if network error occurs
     MAX_RETRIES_COUNT     = ENV['OMNI_MAX_RETRIES_COUNT']&.to_i || 5
@@ -54,7 +54,7 @@ module OmniparseClient
 
     def base_url
       components = { host: host, port: port }
-      URI::HTTP.build(components).to_s
+      URI::HTTPS.build(components).to_s
     end
 
     # TEST connection
