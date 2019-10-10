@@ -11,8 +11,7 @@ Gem::Specification.new do |s|
                    'lib/omni_parse_client_ruby/loggable.rb',
                    'lib/omni_parse_client_ruby/connection.rb',
                    'lib/omni_parse_client_ruby/parsers/html_parser.rb']
-  s.homepage    =
-    'http://www.firstmoversadvantage.com/'
+  s.homepage    = 'http://www.fmadata.com/'
   s.license     = 'MIT'
   s.add_dependency 'rest-client', '~> 2.0.2', '>= 2.0.2'
   s.add_development_dependency 'minitest-stub-const'
