@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name        = 'omni_parse_client_ruby'
-  s.version     = '0.0.0'
-  s.date        = '2017-04-27'
+  s.version     = '0.4.0'
+  s.date        = '2019-10-17'
   s.summary     = 'Client for omniparse API'
   s.description = 'Client for omniparse API'
-  s.authors     = ['Brian Long', 'Michał Marzec']
+  s.authors     = ['Brian Long', 'Michał Marzec', 'Paweł Jermalonek']
   s.email       = 'brian.long@firstmoversadvantage.com'
   s.files       = ['lib/omni_parse_client_ruby.rb',
                    'lib/omni_parse_client_ruby/base.rb',

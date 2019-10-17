@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rest-client'
 
 module OmniparseClient
@@ -8,15 +9,15 @@ module OmniparseClient
 
     attr_reader :api_key, :port, :version, :host
 
-    DEFAULT_URL           = 'www.omniparse.com'.freeze
+    DEFAULT_URL           = 'www.omniparse.com'
     DEFAULT_PORT          = 443
-    DEFAULT_VERSION       = '/api/v1'.freeze
+    DEFAULT_VERSION       = '/api/v1'
     # Retries count if network error occurs
     MAX_RETRIES_COUNT     = ENV['OMNI_MAX_RETRIES_COUNT']&.to_i || 5
     # Time in seconds for consequent delays for reconnection
     RETRIES_DELAYS_ARRAY  =
-        ENV['OMNI_RETRIES_DELAYS_ARRAY']&.split(',')&.map(&:to_i) ||
-        [5, 30, 2*60, 10*60, 30*60].freeze
+      ENV['OMNI_RETRIES_DELAYS_ARRAY']&.split(',')&.map(&:to_i) ||
+      [5, 30, 2 * 60, 10 * 60, 30 * 60].freeze
     RETRY_ON_ERRORS = [
       RestClient::InternalServerError,
       RestClient::NotImplemented,
@@ -76,11 +77,16 @@ module OmniparseClient
       begin
         yield block
       rescue *RETRY_ON_ERRORS => e
-        raise RetriesLimitReached, e.message if @retry_index >= MAX_RETRIES_COUNT
+        raise RetriesLimitReached, e.message if retries_limit_reached?
+
         sleep(RETRIES_DELAYS_ARRAY[@retry_index])
         @retry_index += 1
         retry
       end
+    end
+
+    def retries_limit_reached?
+      @retry_index >= MAX_RETRIES_COUNT
     end
   end
 end

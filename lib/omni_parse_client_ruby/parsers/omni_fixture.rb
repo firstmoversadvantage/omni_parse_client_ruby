@@ -7,9 +7,8 @@ module OmniparseClient
     #                          version: 'v1',
     #                          api_key: 'token')
     # @omni_fixture = @omni.fixture
-    # 
+    #
     class OmniFixture
-
       include Connection
       include Loggable
 
@@ -22,7 +21,7 @@ module OmniparseClient
       def all(parser_id)
         self.last_request = base_url + index_path
         # https://github.com/rest-client/rest-client#passing-advanced-options
-        headers_and_params = self.headers.merge(params: params(parser_id))
+        headers_and_params = headers.merge(params: params(parser_id))
         response = omni_get(last_request, headers_and_params)
         self.last_response = Response.new(response)
         last_response
@@ -33,11 +32,11 @@ module OmniparseClient
           omni_parser_id: parser_id
         }
       end
+
       # Paths
       def index_path
-        return "/#{version}/omni_fixtures"
+        "/#{version}/omni_fixtures"
       end
-      #
     end
   end
 end
