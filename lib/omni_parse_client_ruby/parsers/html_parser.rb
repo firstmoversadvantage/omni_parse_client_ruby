@@ -39,12 +39,13 @@ module OmniparseClient
       def parse(p = {})
         return false unless p[:html]
         return false unless p[:omni_parser_id]
+
         prepare(p)
 
         self.last_request = base_url + parse_path
         response = omni_post(last_request,
-                            params,
-                            headers)
+                             params,
+                             headers)
 
         self.last_response = Response.new(response)
         last_response
@@ -54,12 +55,13 @@ module OmniparseClient
       # @omni_html.parse(parser_id, html)
       def trial_run(p = {})
         return false unless p[:omni_parser_id]
+
         prepare(p)
 
         self.last_request = base_url + trial_run_path
         response = omni_post(last_request,
-                                   params,
-                                   headers)
+                             params,
+                             headers)
         self.last_response = Response.new(response)
         last_response
       end
@@ -84,7 +86,6 @@ module OmniparseClient
       def index_path
         "/#{version}/html_parsers"
       end
-      #
     end
   end
 end
