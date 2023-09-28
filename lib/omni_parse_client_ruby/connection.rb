@@ -33,7 +33,6 @@ module OmniparseClient
       Net::HTTPGatewayTimeout,
       Net::HTTPInsufficientStorage,
       Net::HTTPLoopDetected,
-      Net::HTTPGatewayTimeout,
       Net::HTTPRequestTimeout
     ].freeze
 
@@ -118,8 +117,10 @@ module OmniparseClient
         @retry_index += 1
         retry
       rescue *EXCEPTIONS_EXCLUDING_MESSAGES => e
-        message = "#{e&.data&.code} #{e&.data&.code_type}"
-        raise RetriesLimitReached, message if retries_limit_reached?
+        if retries_limit_reached?
+          message = "#{e&.data&.code} #{e&.data&.code_type}"
+          raise RetriesLimitReached, message
+        end
 
         sleep(RETRIES_DELAYS_ARRAY[@retry_index])
         @retry_index += 1
