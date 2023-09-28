@@ -74,6 +74,31 @@ class TestConnection < MiniTest::Test
     end
   end
 
+  define_method "test_omni_get_headers_and_params" do
+    stub_request(:get, @request_url + '?parser_id=555').with(
+      headers: { 'Set-Cookie' => 'test' }
+    ).to_return(status: 200)
+
+    stub_client_retry_delays do
+      @omni_client.omni_get(
+        @request_url, { 'parser_id' => 555 }, { 'Set-Cookie' => 'test' }
+      )
+    end
+  end
+
+  define_method "test_omni_post_headers_and_params" do
+    stub_request(:post, @request_url).with(
+      headers: { 'Set-Cookie' => 'test' },
+      body: { 'omni_parser_id' => 555 }
+    ).to_return(status: 200)
+
+    stub_client_retry_delays do
+      @omni_client.omni_post(
+        @request_url, { 'omni_parser_id' => 555 }, { 'Set-Cookie' => 'test' }
+      )
+    end
+  end
+
   private
 
   def stub_client_retry_delays(&block)

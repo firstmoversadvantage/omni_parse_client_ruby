@@ -48,12 +48,15 @@ module OmniparseClient
     def omni_get(request_url, params = {}, headers = {})
       uri = URI(request_url)
       uri.query = URI.encode_www_form(params)
+      req = Net::HTTP::Get.new(uri)
       headers.each do |header, val|
-        uri[header] = val
+        req[header] = val
       end
 
       retry_on_server_error do
-        res = Net::HTTP.get_response(uri)
+        res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+          http.request(req)
+        end
         res.error! if !res.is_a?(Net::HTTPSuccess) && CLIENT_ERRORS.include?(res.code_type)
 
         res
@@ -62,12 +65,16 @@ module OmniparseClient
 
     def omni_post(request_url, params = {}, headers = {})
       uri = URI(request_url)
+      req = Net::HTTP::Post.new(uri)
+      req.set_form_data(params)
       headers.each do |header, val|
-        uri[header] = val
+        req[header] = val
       end
 
       retry_on_server_error do
-        res = Net::HTTP.post_form(uri, params)
+        res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+          http.request(req)
+        end
         res.error! if !res.is_a?(Net::HTTPSuccess) && CLIENT_ERRORS.include?(res.code_type)
 
         res
