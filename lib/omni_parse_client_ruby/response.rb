@@ -7,11 +7,11 @@ module OmniparseClient
 
     attr_reader :resp, :json, :code, :headers
 
-    def initialize(rest_client_response)
-      @resp     = rest_client_response
+    def initialize(client_response)
+      @resp     = client_response
       @json     = JSON.parse(@resp.body)
-      @code     = @resp.code
-      @headers  = @resp.headers
+      @code     = @resp.code.to_i
+      @headers  = @resp.to_hash
     end
   end
 end

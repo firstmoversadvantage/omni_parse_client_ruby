@@ -46,7 +46,6 @@ module OmniparseClient
         response = omni_post(last_request,
                              params,
                              headers)
-
         self.last_response = Response.new(response)
         last_response
       end

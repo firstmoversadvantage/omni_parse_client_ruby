@@ -7,7 +7,7 @@ class TestConnection < MiniTest::Test
     @omni_client = Omni::Client.new(host: 'www.example.com',
                                     version: 'api/v1',
                                     api_key: '123')
-    @request_url = 'http://www.example.com'
+    @request_url = 'https://www.example.com'
   end
 
   ERROR_CODES_MESSAGES =
