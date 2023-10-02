@@ -74,7 +74,7 @@ class TestConnection < MiniTest::Test
     end
   end
 
-  define_method "test_omni_get_headers_and_params" do
+  def test_omni_get_headers_and_params
     stub_request(:get, @request_url + '?parser_id=555').with(
       headers: { 'Set-Cookie' => 'test' }
     ).to_return(status: 200)
@@ -86,7 +86,7 @@ class TestConnection < MiniTest::Test
     end
   end
 
-  define_method "test_omni_post_headers_and_params" do
+  def test_omni_post_headers_and_params
     stub_request(:post, @request_url).with(
       headers: { 'Set-Cookie' => 'test' },
       body: { 'omni_parser_id' => 555 }
