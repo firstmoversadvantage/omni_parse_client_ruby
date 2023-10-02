@@ -53,14 +53,7 @@ module OmniparseClient
         req[header] = val
       end
 
-      retry_on_server_error do
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-          http.request(req)
-        end
-        res.error! if !res.is_a?(Net::HTTPSuccess) && CLIENT_ERRORS.include?(res.code_type)
-
-        res
-      end
+      make_request(req)
     end
 
     def omni_post(request_url, params = {}, headers = {})
@@ -72,14 +65,7 @@ module OmniparseClient
         req[header] = val
       end
 
-      retry_on_server_error do
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-          http.request(req)
-        end
-        res.error! if !res.is_a?(Net::HTTPSuccess) && CLIENT_ERRORS.include?(res.code_type)
-
-        res
-      end
+      make_request(req)
     end
 
     # headers
@@ -127,6 +113,18 @@ module OmniparseClient
         sleep(RETRIES_DELAYS_ARRAY[@retry_index])
         @retry_index += 1
         retry
+      end
+    end
+
+    def make_request(request)
+      retry_on_server_error do
+        uri = request.uri
+        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+          http.request(request)
+        end
+        res.error! if !res.is_a?(Net::HTTPSuccess) && CLIENT_ERRORS.include?(res.code_type)
+
+        res
       end
     end
 
