@@ -39,8 +39,10 @@ class HtmlParserTest < Minitest::Test
     url = 'https://www.example.com/api/v1/html_parser/parse'
     stub_request(:post, url).with(
       body: { omni_parser_id: 1, html: '' }
-    ).to_return(status: 400, body: "{\"errors\":[\"Html not present\"]}")
+    ).to_raise(Net::HTTPClientException.new('400 Bad Request', ''))
 
-    @html_parser.parse({ omni_parser_id: 1, html: '' })
+    assert_raises Net::HTTPClientException do
+      @html_parser.parse({ omni_parser_id: 1, html: '' })
+    end
   end
 end
