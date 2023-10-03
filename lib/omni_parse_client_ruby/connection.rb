@@ -33,7 +33,8 @@ module OmniparseClient
       Net::HTTPGatewayTimeout,
       Net::HTTPInsufficientStorage,
       Net::HTTPLoopDetected,
-      Net::HTTPRequestTimeout
+      Net::HTTPRequestTimeout,
+      Net::HTTPBadRequest
     ].freeze
 
     # constructor
@@ -113,6 +114,8 @@ module OmniparseClient
         sleep(RETRIES_DELAYS_ARRAY[@retry_index])
         @retry_index += 1
         retry
+      rescue Net::HTTPClientException => e
+        raise Net::HTTPClientException.new(e.message.tr('"', ''), e.response)
       end
     end
 
