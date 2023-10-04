@@ -34,7 +34,8 @@ module OmniparseClient
       Net::HTTPInsufficientStorage,
       Net::HTTPLoopDetected,
       Net::HTTPRequestTimeout,
-      Net::HTTPBadRequest
+      Net::HTTPBadRequest,
+      Net::HTTPNotFound
     ].freeze
 
     # constructor
