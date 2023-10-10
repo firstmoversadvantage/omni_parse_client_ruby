@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |s|
   s.name        = 'omni_parse_client_ruby'
-  s.version     = '1.2.0'
-  s.date        = '2019-10-17'
+  s.version     = '1.3.0'
+  s.date        = '2023-09-28'
   s.summary     = 'Client for omniparse API'
   s.description = 'Client for omniparse API'
   s.authors     = ['Brian Long', 'Michał Marzec', 'Paweł Jermalonek']
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
                    'lib/omni_parse_client_ruby/parsers/html_parser.rb']
   s.homepage    = 'http://www.fmadata.com/'
   s.license     = 'MIT'
-  s.add_dependency 'rest-client', '~> 2.0.2', '>= 2.0.2'
-  s.add_development_dependency 'minitest-stub-const'
-  s.add_development_dependency 'webmock'
+  s.add_dependency 'net-http', '~> 0.3.2'
+  s.add_development_dependency 'minitest-stub-const', '~> 0.6'
+  s.add_development_dependency 'webmock', '~> 3.18'
 end

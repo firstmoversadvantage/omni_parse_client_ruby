@@ -71,6 +71,9 @@ Set up OmniFixture client
 @omni_fixture.all(omni_parser_id)
 ```
 
+## Testing
+Install all required gems (which are listed in .gemspec file) and run `rake test` in order to run tests.
+
 ## Contributing
 Contact: http://www.firstmoversadvantage.com
 

@@ -21,7 +21,7 @@ module OmniparseClient
       # @omni_html.all(parser_id)
       def all
         self.last_request = base_url + index_path
-        response = omni_get(last_request, headers)
+        response = omni_get(last_request, {}, headers)
         self.last_response = Response.new(response)
         last_response
       end
@@ -46,7 +46,6 @@ module OmniparseClient
         response = omni_post(last_request,
                              params,
                              headers)
-
         self.last_response = Response.new(response)
         last_response
       end
