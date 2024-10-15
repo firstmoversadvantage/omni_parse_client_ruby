@@ -1,6 +1,6 @@
 # Omni Parse Client for Ruby
 
-This gem is a client library for [www.omniparse.com](www.omniparse.com) API
+This gem is a client library for [www.omniparse.com](https://www.omniparse.com) API
 
 # Usage
 
@@ -8,11 +8,10 @@ This gem is a client library for [www.omniparse.com](www.omniparse.com) API
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omni_parse_client_ruby', git: 'git://github.com/firstmoversadvantage/omni_parse_client_ruby.git',
-                              branch: 'initialize_client'
+gem 'omni_parse_client_ruby', '1.3.0', git: 'https://github.com/firstmoversadvantage/omni_parse_client_ruby.git'
 ```
 
-Sign up at [www.omniparse.com](www.omniparse.com)  and set up your account.
+Sign up at [www.omniparse.com](https://www.omniparse.com)  and set up your account.
 
 Create your own OmniParser.
 
@@ -75,7 +74,7 @@ Set up OmniFixture client
 Install all required gems (which are listed in .gemspec file) and run `rake test` in order to run tests.
 
 ## Contributing
-Contact: http://www.firstmoversadvantage.com
+Contact: [fmadata.com](https://www.fmadata.com)
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
