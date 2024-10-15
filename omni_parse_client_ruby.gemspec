@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'omni_parse_client_ruby'
-  s.version     = '1.3.0'
+  s.version     = '1.4.1'
   s.date        = '2023-09-28'
   s.summary     = 'Client for omniparse API'
   s.description = 'Client for omniparse API'

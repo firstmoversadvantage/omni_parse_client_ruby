@@ -8,7 +8,7 @@ This gem is a client library for [www.omniparse.com](https://www.omniparse.com) 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omni_parse_client_ruby', '1.3.0', git: 'https://github.com/firstmoversadvantage/omni_parse_client_ruby.git'
+gem 'omni_parse_client_ruby', '1.4.1', git: 'https://github.com/firstmoversadvantage/omni_parse_client_ruby.git'
 ```
 
 Sign up at [www.omniparse.com](https://www.omniparse.com)  and set up your account.
