@@ -43,6 +43,7 @@ Example for .env file:
 ```ruby
 OMNI_MAX_RETRIES_COUNT=5
 OMNI_RETRIES_DELAYS_ARRAY=1,5,10,15,25
+OMNIPARSE_HOST=www.omniparse.com
 ```
 
 ## HTML parsing

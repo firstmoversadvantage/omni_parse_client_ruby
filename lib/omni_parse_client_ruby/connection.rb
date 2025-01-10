@@ -9,7 +9,6 @@ module OmniparseClient
 
     attr_reader :api_key, :port, :version, :host
 
-    DEFAULT_URL           = 'www.omniparse.com'
     DEFAULT_PORT          = 443
     DEFAULT_VERSION       = '/api/v1'
     # Retries count if network error occurs
@@ -40,7 +39,7 @@ module OmniparseClient
 
     # constructor
     def setup_connection(p = {})
-      @host       = p[:host] || DEFAULT_URL
+      @host       = p[:host] || OMNIPARSE_HOST
       @port       = p[:port] || DEFAULT_PORT
       @version    = p[:version] || DEFAULT_VERSION
       @api_key    = p[:api_key]
