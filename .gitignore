@@ -1,4 +1,4 @@
-OMNIPARSE_HOST*.gem
+*.gem
 *.rbc
 /.config
 /coverage/
