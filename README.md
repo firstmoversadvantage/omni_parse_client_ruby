@@ -39,7 +39,7 @@ RETRIES_DELAYS_ARRAY=[5, 30, 2*60, 10*60, 30*60]
 - **OMNI_MAX_RETRIES_COUNT** should be an integer.
 - **OMNI_RETRIES_DELAYS_ARRAY** should be a string of integers, separeted by `,`. Each integer relates to consequent delay time in seconds. Array length should not be lower than `MAX_RETRIES_COUNT`.
 
-Example for .env file:
+Example of environmental variables that gem is utilizing:
 ```ruby
 OMNI_MAX_RETRIES_COUNT=5
 OMNI_RETRIES_DELAYS_ARRAY=1,5,10,15,25
